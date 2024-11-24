@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Sans-Serif;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    overflow: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: row;
+    background-color: #134e4a; 
+    margin: 10% auto; 
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%; 
+    max-width: 900px; 
+    color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 20px;
+}
+
+.close {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #e5e5e5;
+}
+
+.modal-text {
+    flex: 1;
+    text-align: left;
+    color: #ffffff;
+}
+
+.modal-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modal-text p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.modal-image {
+    width: 200px; /* Image container size */
+    height: 200px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Responsive Modal Adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+    .modal-image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+/* Banner Section */
+.Banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(24, 43, 27, 0.75), rgba(0, 0, 0, 0.75)), url(Images/Background2.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Text Content */
+.Text {
+    margin-top: 10px;
+    max-width: 600px;
+    color: #fff;
+    text-align: center;
+    margin-right: 20px;
+}
+.Text h1 {
+    font-size: 3em;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+.Text h1 span {
+    color: rgb(33, 119, 62);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Profile Image Container */
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Profile Image Styling */
+.Image {
+    width: 85px;
+    height: 300px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: width 0.8s, height 0.8s;
+}
+
+.Image h2 {
+    color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    opacity: 0;
+    transition: bottom 0.8s, opacity 0.8s;
+}
+.Image:hover {
+    width: 140px;
+    height: 300px;
+    cursor: pointer;
+}
+.Image:hover h2 {
+    opacity: 1;
+    bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Text h1 {
+        font-size: 2em;
+    }
+    .profiles {
+        gap: 10px;
+    }
+    .Image {
+        width: 70px;
+        height: 250px;
+    }
+    .Image:hover {
+        width: 120px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Text h1 {
+        font-size: 1.5em;
+    }
+    .modal-content {
+        width: 90%;
+    }
+    .Image {
+        width: 60px;
+        height: 220px;
+    }
+    .Image:hover {
+        width: 100px;
+        height: 220px;
+    }
+}
+.arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+    transform: translateY(-50%);
+    user-select: none;
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}

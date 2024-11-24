@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plug-Ins</title>  
+    <link rel="stylesheet" href="mstyle.css"> 
+</head>
+<body> 
+    <div class="Banner">
+        <div class="container">
+            <div class="Text">   
+                <h1>Meet the Creative Minds<br><span>Behind Our Team!</span></h1>
+            </div>  
+            <div class="profiles">
+                
+                <div class="Image" style="background-image: url('Images/JC.jpg');" 
+                    data-name="Jay Cee" data-info="I'm John Carlo D. Marrero, but you can call me JC instead. I love art and
+                    music. I also am a programmer that specializes in game development
+                    and web development. I aspire to become a professional programmer and a cool Artist,
+                    along with my skills ill pursue a career that will compliment well with my skills.
+                    I believe that creativity and technicality is a good combination."><h2>Jay Cee</h2></div>
+                
+                
+                
+                <div class="Image" style="background-image: url('Images/Jravel.jpg');" 
+                    data-name="Jravel Lynx" data-info="Jravel Lynx T. Marpuri: I am an 18-year-old student from Marikina City, Metro Manila, with a passion for mathematics and 
+                    the arts. I excel in time management and communication skills, enjoy playing the piano and reading, and have achieved 
+                    recognition in several prestigious competitions."><h2>Jravel Lynx</h2></div>
+                
+                <div class="Image" style="background-image: url('Images/Harvey.jpg');" data-name="John Harvey" 
+                    data-info="Hello! I'm John Harvey Menguito, My hobbies are watching movies, playing online games, and doing some physical activities
+                    My goal in life is to be rich, I will do my best to reach that goal."><h2>John Harvey</h2></div>
+               
+                    
+                    <div class="Image" style="background-image: url('Images/Luigi.jpg');" data-name="Luigi Ray" 
+                        data-info="I am a very passionate and friendly person, with a flair for solving problems creatively.
+                        I have a passion for new ideas and approaches and am very keen on teaming up with others to come up with innovative solutions. My rational mind helps me analyze the situation objectively, while my enthusiasm keeps me motivated and excited about possibilities."><h2>Luigi Ray</h2></div>
+               
+                    
+                    <div class="Image" style="background-image: url('Images/Lemuel.jpg');" 
+                        data-name="Lemuel Jezny" data-info="I love playing instruments and competitive online games. Additionally, I enjoy walking 
+                        and playing with my dog every day. I can play different kinds of instruments, such as drums, 
+                        which is my top favorite, followed by guitar, ukulele, and piano."><h2>Lemuel Jezny</h2></div>
+            </div>
+        </div>       
+    </div>         
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="arrow left" id="left-arrow">&#9664;</div>
+            <div class="modal-text">
+                <h2 id="modal-name">Profile Name</h2>
+                <p id="modal-info">Brief introduction about the profile goes here.</p>
+            </div>
+            <div id="modal-image" class="modal-image"></div>
+            <div class="arrow right" id="right-arrow">&#9654;</div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("modal");
+        var modalName = document.getElementById("modal-name");
+        var modalInfo = document.getElementById("modal-info");
+        var modalImage = document.getElementById("modal-image");
+        var closeBtn = document.getElementsByClassName("close")[0];
+        var profiles = Array.from(document.querySelectorAll('.Image'));
+        var currentIndex = 0;
+
+        function openModal(index) {
+            var profile = profiles[index];
+            modalName.textContent = profile.getAttribute('data-name');
+            modalInfo.textContent = profile.getAttribute('data-info');
+            modalImage.style.backgroundImage = profile.style.backgroundImage;
+            currentIndex = index;
+            modal.style.display = "block";
+        }
+
+        profiles.forEach(function(image, index) {
+            image.addEventListener('click', function() {
+                openModal(index);
+            });
+        });
+
+        document.getElementById("left-arrow").onclick = function() {
+            currentIndex = (currentIndex - 1 + profiles.length) % profiles.length;
+            openModal(currentIndex);
+        }
+
+        document.getElementById("right-arrow").onclick = function() {
+            currentIndex = (currentIndex + 1) % profiles.length;
+            openModal(currentIndex);
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

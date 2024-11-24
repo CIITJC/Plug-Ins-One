@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css">
+</head>
+<body>
+
+    <section id="header">
+        <a href="#"><img src="Essentials/PlugIn.png" class="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li id="lg-bag"><a class="active" href="cart.html">🛒</a></li>
+                <a href="#" id="close">X</a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html">🛒</a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="cart">
+        <h1>Your Cart</h1>
+        <div id="cart-container">
+        
+        </div>
+        <div id="cart-footer">
+            <h2>Total: ₱<span id="cart-total">0.00</span></h2>
+            <button id="checkoutBtn">Checkout</button>
+            <button id="clearCartBtn">Clear Cart</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img src="Essentials/PlugIn.png" class="logo">
+            <h4>Contacts</h4>
+            <p><strong>Address:</strong> 938 Aurora Blvd, Cubao, Quezon City, 1109 Metro Manila</p>
+            <p><strong>Phone:</strong> +63 912 345 6789</p>
+            <p><strong>Email:</strong> plugins@gmail.com</p>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>Follow us on!</h4>
+            <a href="#">Currently not available</a>
+        </div>
+        <div class="copyright">
+            <p>Copyright 2024 - Plug - INs</p>
+        </div>
+    </footer>
+
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-container');
+            const cartTotal = document.getElementById('cart-total');
+            cartContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                cartContainer.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p>Price: ₱${item.price.toFixed(2)}</p>
+                            <p>Quantity: 
+                                <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="quantity-input">
+                            </p>
+                            <p>Subtotal: ₱${itemTotal.toFixed(2)}</p>
+                            <button class="remove-item-btn" data-index="${index}">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+            cartTotal.textContent = total.toFixed(2);
+        }
+        document.addEventListener('input', (event) => {
+            if (event.target.classList.contains('quantity-input')) {
+                const index = parseInt(event.target.dataset.index, 10);
+                const newQuantity = parseInt(event.target.value, 10);
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                if (newQuantity > 0) {
+                    cart[index].quantity = newQuantity;
+                } else {
+                    alert('Quantity must be at least 1.');
+                    event.target.value = cart[index].quantity;
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+            }
+        });
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-item-btn')) {
+                const index = parseInt(event.target.dataset.index, 10);
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.splice(index, 1); // Remove item
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+            }
+        });
+        document.getElementById('clearCartBtn').addEventListener('click', () => {
+             localStorage.removeItem('cart'); 
+                loadCart();  
+        document.getElementById('cart-total').textContent = '0.00'; 
+        });
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+             const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cart.length === 0) {
+                     alert('Your cart is empty.');
+            return;
+    }
+                alert('Checkout successful!'); 
+                localStorage.removeItem('cart');  
+                loadCart(); 
+
+        document.getElementById('cart-total').textContent = '0.00'; 
+});
+        loadCart();
+    </script>
+    
+</body>
+</html>
