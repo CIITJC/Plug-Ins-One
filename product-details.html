@@ -63,6 +63,7 @@
     </footer>
 
     <script>
+
         const urlParams = new URLSearchParams(window.location.search);
         const productId = parseInt(urlParams.get('id'), 10);
 
@@ -139,6 +140,7 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             alert(`Added ${quantity} item(s) of "${product.name}" to your cart.`);
         });
+
     </script>
     
 </body>

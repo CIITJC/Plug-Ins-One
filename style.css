@@ -287,6 +287,15 @@ footer .copyright{
     #about-head div{
         padding-left: 0px;
     }
+    .product-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info {
+        max-width: 100%;
+        text-align: center;
+    }
 }
 @media (max-width:477px){
     .section-p1{
@@ -316,6 +325,15 @@ footer .copyright{
     }
     #about-head div{
         padding-left: 0px;
+    }
+    .product-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info {
+        max-width: 100%;
+        text-align: center;
     }
 }
 #productGrid {
@@ -703,7 +721,4 @@ footer .copyright{
         font-size: 14px;
         padding: 8px 20px;
     }
-}
-#page-header.textbox p {
-    color: #292b2a;
 }
